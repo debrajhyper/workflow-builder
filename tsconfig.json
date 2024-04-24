@@ -14,6 +14,16 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    "baseUrl": ".",
+    "paths": {
+      "@Api/*": ["src/api/*"],
+      "@App/*": ["src/app/*"],
+      "@Components/*": ["src/components/*"],
+      "@Constants/*": ["src/constants/*"],
+      "@Service/*": ["src/services/*"],
+      "@View/*": ["src/view/*"],
+    },
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

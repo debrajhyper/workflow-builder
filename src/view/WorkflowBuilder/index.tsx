@@ -1,12 +1,11 @@
-import { useAppSelector, useAppDispatch, getWorkflowByIdSelectors, setCurrentWorkflow } from "@Services";
-
-
-import { Canvas, BlockLibrary, Title } from "@Components";
-import { Preview } from "./Preview";
-import { ReactFlowProvider } from "reactflow";
-import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { ReactFlowProvider } from "reactflow";
+import { HOME_PATH } from "@Routes";
 import { newWorkflow } from "@Utils";
+import { Preview } from "./Preview";
+import { Canvas, BlockLibrary } from "@Components";
+import { useAppSelector, useAppDispatch, getWorkflowByIdSelectors, setCurrentWorkflow } from "@Services";
 import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
 
 export function WorkflowBuilder() {
@@ -20,7 +19,7 @@ export function WorkflowBuilder() {
     useEffect(() => {
         if (currentItem === null) {
             if (workflowId !== 0) {
-                navigate("/");
+                navigate(HOME_PATH);
             } else {
                 dispatch(setCurrentWorkflow(newWorkflow));
             }
@@ -31,11 +30,7 @@ export function WorkflowBuilder() {
 
     return (
         <>
-            <Title
-                id={currentItem?.id || Number(workflowId)}
-                name={currentItem?.name || "New Workflow"}
-            />
-            <PanelGroup autoSaveId="persistence" direction="vertical" className="!h-[86vh]">
+            <PanelGroup autoSaveId="persistence" direction="vertical" className="!h-[93vh]">
                 <Panel maxSize={95} className="flex w-full h-[54%]">
                     <ReactFlowProvider>
                         <BlockLibrary />
@@ -43,19 +38,10 @@ export function WorkflowBuilder() {
                     </ReactFlowProvider>
                 </Panel>
                 <PanelResizeHandle />
-                <Panel maxSize={75} className="flex flex-col h-[31.5%]">
+                <Panel maxSize={75} className="flex flex-col">
                     <Preview />
                 </Panel>
             </PanelGroup>
-            {/* <div className="flex w-full h-[54%]">
-                <ReactFlowProvider>
-                    <BlockLibrary />
-                    <Canvas />
-                </ReactFlowProvider>
-            </div>
-            <div className="flex flex-col h-[31.5%]">
-                <Preview />
-            </div> */}
         </>
     );
 }

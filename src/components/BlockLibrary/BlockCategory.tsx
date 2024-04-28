@@ -1,18 +1,15 @@
-import { blockCategory } from "../../data";
-import { BlockCategoryType, BlockType } from "types";
 import { Block } from "./Block";
+import { blockCategory } from "./BlockDetails";
 
-export function BlockCategory(props: {
-    name: BlockCategoryType;
-    data: BlockType[];
-}) {
-    const { name, data } = props;
+export function BlockCategory({ name, data }: BlockCategoryProps) {
     return (
         <>
-            <div className="font-bold mb-4">{blockCategory[name]}</div>
-            {data.map((block) => {
-                return <Block key={block.id} data={block} />;
-            })}
+            <div className="font-bold mb-1">{blockCategory[name]}</div>
+            {
+                data.map((block) => {
+                    return <Block key={block.id} data={block} />;
+                })
+            }
         </>
     );
 }

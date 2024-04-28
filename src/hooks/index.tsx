@@ -1,21 +1,15 @@
 import { useCallback } from "react";
-import { DND_DATA_TRANSFER } from "../utils";
-import { ReactFlowInstance, XYPosition } from "reactflow";
 import { NodeType } from "types";
-// import { NodeType } from "../type";
+import { UseDnDProps } from "./types";
+import { DND_DATA_TRANSFER } from "@Utils";
+import { DND_MOVE, UNDEFINED } from "@Constants";
 
-export const useDnD = (params: {
-    setIsHighlight: React.Dispatch<React.SetStateAction<boolean>>;
-    onDropCallback: (params: { position?: XYPosition; type: NodeType }) => void;
-    reactFlowInstance: ReactFlowInstance | null;
-}) => {
-    const { setIsHighlight, onDropCallback, reactFlowInstance } = params;
-
+export const useDnD = ({ setIsHighlight, onDropCallback, reactFlowInstance }: UseDnDProps ) => {
     const onDropHandler = (event: { dataTransfer: { getData: (arg0: string) => string; }; clientX: number; clientY: number; }) => {
         setIsHighlight(false);
         const type = event?.dataTransfer.getData(DND_DATA_TRANSFER) as NodeType;
         // check if the dropped element is valid
-        if (typeof type === "undefined" || !type) {
+        if (typeof type === UNDEFINED || !type) {
             return;
         }
         const position = reactFlowInstance?.screenToFlowPosition({
@@ -26,7 +20,7 @@ export const useDnD = (params: {
     };
     const onDragOverHandler = useCallback((event: { preventDefault: () => void; dataTransfer: { dropEffect: string; }; }) => {
         event.preventDefault();
-        event.dataTransfer.dropEffect = "move";
+        event.dataTransfer.dropEffect = DND_MOVE;
     }, []);
 
     return { onDropHandler, onDragOverHandler };

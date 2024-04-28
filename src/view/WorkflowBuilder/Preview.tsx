@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { getPreviewSelectors, useAppSelector } from "@Services";
 import { Table } from "@Components";
+import { getPreviewSelectors, useAppSelector } from "@Services";
+import { BLOB_TYPE, COMA, CSV_FILE_NAME, JSON_FILE_NAME, LETTER_A, NEW_LINE } from '@Constants';
 
 export function Preview() {
     const preview = useAppSelector(getPreviewSelectors);
@@ -10,23 +11,23 @@ export function Preview() {
 
     function exportToJSON(data: Data): void {
         const jsonData = JSON.stringify(data, null, 2);
-        downloadFile(jsonData, 'data.json');
+        downloadFile(jsonData, JSON_FILE_NAME);
     }
 
     function exportToCSV(data: Data): void {
         let csvData: string;
         if (Array.isArray(data)) {
-            csvData = data.map(row => row.join(',')).join('\n');
+            csvData = data.map(row => row.join(COMA)).join(NEW_LINE);
         } else {
             csvData = data;
         }
-        downloadFile(csvData, 'data.csv');
+        downloadFile(csvData, CSV_FILE_NAME);
     }
 
     function downloadFile(data: string, fileName: string): void {
-        const blob = new Blob([data], { type: 'application/octet-stream' });
+        const blob = new Blob([data], { type: BLOB_TYPE });
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement(LETTER_A);
         a.href = url;
         a.download = fileName;
         document.body.appendChild(a);

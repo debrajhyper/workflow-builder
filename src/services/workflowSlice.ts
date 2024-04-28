@@ -1,5 +1,5 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { STORE_NAME } from "@Constants";
+import { NO_PREVIEW, NODE_TYPE_FILE_UPLOAD, STORE_NAME } from "@Constants";
 import { RootState } from "./workflowStore";
 import { Connection, Edge, EdgeChange, Node, NodeRemoveChange } from "reactflow";
 import { WorkflowBuilderState, WorkflowType } from "types";
@@ -46,7 +46,7 @@ export const workflowBuilderSlice = createSlice({
                 state.currentItem.nodes[index].data = data;
 
                 if (
-                    state.currentItem.nodes[index].type === "fileUploadNode" &&
+                    state.currentItem.nodes[index].type === NODE_TYPE_FILE_UPLOAD &&
                     state.currentItem.edges.some((edge: { source: string; }) => edge.source === id)
                 ) {
                     const filteredEdges = state.currentItem.edges.filter(
@@ -91,7 +91,7 @@ export const workflowBuilderSlice = createSlice({
                         (node) => node.id === currentEdge.target
                     );
                     if (
-                        state.currentItem.nodes[sourceNodeIndex].type === "fileUploadNode"
+                        state.currentItem.nodes[sourceNodeIndex].type === NODE_TYPE_FILE_UPLOAD
                     ) {
                         state.currentItem.nodes[targetNodeIndex].data =
                             state.currentItem.nodes[sourceNodeIndex].data;
@@ -110,7 +110,7 @@ export const workflowBuilderSlice = createSlice({
         resetPreview: (state) => {
             if (state.currentItem) {
                 state.currentItem.preview =
-                    initialState.currentItem?.preview || "No Preview";
+                    initialState.currentItem?.preview || NO_PREVIEW;
             }
         },
     }
@@ -149,7 +149,7 @@ export const getWorkflowListSelectors = createSelector(getWorkFlowDataSelector, 
 export const getPreviewSelectors = createSelector(
     getWorkFlowDataSelector,
     ({ currentItem }) => {
-        return currentItem?.preview || "No Preview";
+        return currentItem?.preview || NO_PREVIEW;
     }
 );
 

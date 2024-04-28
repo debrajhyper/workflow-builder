@@ -1,30 +1,11 @@
 import { useState } from "react";
-import ReactFlow, {
-    addEdge,
-    applyEdgeChanges,
-    applyNodeChanges,
-    Background,
-    Controls,
-    Node,
-    NodeTypes,
-    ReactFlowInstance,
-    XYPosition,
-} from "reactflow";
+import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, Background, Controls, Node, NodeTypes, ReactFlowInstance } from "reactflow";
 import "reactflow/dist/style.css";
-import { getNewNode } from "@Utils";
-import { FileUploadNode, FilterDataNode, SortDataNode } from "./customNodes";
 import { useDnD } from "@Hooks";
-
-import {
-    addNewNode,
-    getEdgesSelectors,
-    getNodesSelectors,
-    updateEdges,
-    updateNodes,
-    useAppDispatch, useAppSelector
-} from "@Services";
-import { NodeType } from "types";
-
+import { getNewNode } from "@Utils";
+import { OnDropCallbackProps } from "./types";
+import { FileUploadNode, FilterDataNode, SortDataNode } from "./customNodes";
+import { addNewNode, getEdgesSelectors, getNodesSelectors, updateEdges, updateNodes, useAppDispatch, useAppSelector } from "@Services";
 
 const nodeTypes: NodeTypes = {
     fileUploadNode: FileUploadNode,
@@ -33,20 +14,13 @@ const nodeTypes: NodeTypes = {
 };
 
 export function Canvas() {
-    const dispatch = useAppDispatch();
+    const [isHighlight, setIsHighlight] = useState(false);
+    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
     const nodes = useAppSelector(getNodesSelectors);
     const edges = useAppSelector(getEdgesSelectors);
-    const [isHighlight, setIsHighlight] = useState(false);
-    const [reactFlowInstance, setReactFlowInstance] =
-        useState<ReactFlowInstance | null>(null);
-    console.log(nodes);
-    console.log(edges);
-    const onDropCallback = (params: {
-        position?: XYPosition;
-        type: NodeType;
-    }) => {
-        const { position, type } = params;
+    const dispatch = useAppDispatch();
 
+    const onDropCallback = ({ position, type }: OnDropCallbackProps) => {
         const node = getNewNode({ position, type });
         dispatch(addNewNode(node as Node));
     };
@@ -58,7 +32,7 @@ export function Canvas() {
     });
 
     return (
-        <div className="flex-[0.75] flex h-full w-full relative text-xs">
+        <div className="flex-[0.85] flex h-full w-full relative text-xs">
             {isHighlight && (
                 <div className="bg-previewBackground absolute inset-y-0 inset-x-0 border border-previewBorder rounded"></div>
             )}

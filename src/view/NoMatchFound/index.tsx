@@ -1,25 +1,24 @@
 import { Link } from "react-router-dom";
+import errorPage from '@Assets/error.svg';
+import { HOME_PATH } from '@Routes';
 
 export function NoMatchFound() {
     return (
-        <section className="flex items-center h-screen p-16">
-            <div className="container flex flex-col items-center ">
-                <div className="flex flex-col gap-6 max-w-md text-center">
-                    <h2 className="font-extrabold text-9xl text-gray-600 dark:text-gray-100">
-                        <span className="sr-only">Error</span>404
-                    </h2>
-                    <p className="text-2xl md:text-3xl dark:text-gray-300">
-                        Sorry, we couldn't find this page.
+        <div className="p-20 w-full flex items-center">
+            <div className="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">
+                <div className="w-full lg:w-1/2 mx-8">
+                    <div className="text-7xl text-green-500 font-dark font-extrabold mb-8"> 404</div>
+                    <p className="text-2xl md:text-3xl font-light leading-normal mb-8 text-white/80">
+                        Sorry we couldn't find the page you're looking for
                     </p>
-
-                    <Link
-                        to="/"
-                        className="px-8 py-4 text-xl font-semibold rounded bg-purple-600 text-gray-50 hover:text-gray-200"
-                    >
-                        Back to home
+                    <Link to={HOME_PATH} className="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-md focus:outline-none bg-green-700 hover:bg-green-600">
+                        Back to homepage
                     </Link>
                 </div>
+                <div className="w-full lg:flex lg:justify-end lg:w-1/2 mx-5 my-12">
+                    <img src={errorPage} className="" alt="Page not found" />
+                </div>
             </div>
-        </section>
+        </div>
     );
 }

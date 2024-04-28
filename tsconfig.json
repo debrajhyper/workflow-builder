@@ -21,6 +21,7 @@
       "@Constants": ["src/constants/"],
       "@Hooks": ["src/hooks/"],
       "@Layout": ["src/layout/"],
+      "@Routes": ["src/routes/"],
       "@Services": ["src/services/"],
       "@Utils": ["src/utils/"],
       "@View": ["src/view/"],

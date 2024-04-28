@@ -2,18 +2,19 @@ import { Route, Routes } from "react-router-dom";
 import './App.css';
 import { Layout } from "@Layout";
 import { HomePage, WorkflowBuilder, NoMatchFound } from "@View";
+import { HOME_PATH, No_MATCH_FOUND_PATH, WORKFLOW_ID_PATH, WORKFLOW_PATH } from "@Routes";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path={HOME_PATH} element={<Layout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="workflow" element={<WorkflowBuilder />}>
-          <Route path=":id" element={<WorkflowBuilder />} />
+        <Route path={WORKFLOW_PATH} element={<WorkflowBuilder />}>
+          <Route path={WORKFLOW_ID_PATH} element={<WorkflowBuilder />} />
         </Route>
 
-        <Route path="*" element={<NoMatchFound />} />
+        <Route path={No_MATCH_FOUND_PATH} element={<NoMatchFound />} />
       </Route>
     </Routes>
   )

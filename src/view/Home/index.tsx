@@ -9,7 +9,11 @@ export function HomePage() {
     const list = useAppSelector(getWorkflowListSelectors);
 
     return (
-        <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-8 gap-4 p-4 justify-items-center">
+        <main className="grid 
+        grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 
+        gap-6 sm:gap-8 md:gap-4 lg:gap-5 xl:gap-4 
+        p-6 sm:p-8 md:p-4 lg:p-5 xl:p-4 
+        justify-items-center">
             {
                 list.map((item: Pick<WorkflowType, "id" | "name">) => <WorkflowCard key={item.id} data={item} />)
             }

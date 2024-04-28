@@ -44,7 +44,7 @@ export function Header() {
             <header className="flex justify-between items-center bg-header border-b border-border px-4 h-12">
                 <div className="flex items-center h-full font-extrabold text-2xl tracking-tighter text-[#4f4e60]">
                     <img src={logo} alt="logo" className="w-8 mr-2" />
-                    <span>Workflow Builder</span>
+                    <span className="hidden md:block">Workflow Builder</span>
                 </div>
                 {
                     currentWorkflow && location?.pathname !== HOME_PATH
@@ -59,7 +59,7 @@ export function Header() {
                 {
                     currentWorkflow && location?.pathname !== HOME_PATH
                         ? (
-                            <div className="flex gap-4">
+                            <div className="flex gap-1 md:gap-2 lg:gap-4">
                                 <button onClick={() => setIsOpen(true)} title="Click to save workflow" className="flex justify-center items-center rounded border border-border p-1.5 px-4 text-xs font-bold hover:bg-border">
                                     <IconDeviceFloppy size={18} />
                                     <span className="ml-1">Save workflow</span>

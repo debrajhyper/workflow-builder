@@ -1,30 +1,114 @@
-# React + TypeScript + Vite
+# Drag & Drop workflow builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌐 Website : [wbuilder](https://wbuilder.vercel.app/)
 
-Currently, two official plugins are available:
+## Project Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Create a Workflow Builder application where users can create, edit, and visualize different workflows. Each workflow consists of multiple steps (nodes) and the relationships (edges) between them. Users should be able to drag and drop different types of nodes (e.g., filter, find, reduce, map, array methods) onto a canvas, and then draw lines between them to represent the workflow.
 
-## Expanding the ESLint configuration
+    Task is to create a workflow building that performs dynamic operations on large amounts of data. You will have multiple CSVs in your local project. User can perform various operations on data to see final result on the CSV user has selected. This CSV might contain million records too.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![screen1](./template/screen1.png)
+![screen2](./template/screen2.png)
+![screen3](./template/screen3.png)
+![screen4](./template/screen4.png)
 
-- Configure the top-level `parserOptions` property like this:
+<br/>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## 👨🏻‍💻 Developer's Talk
+Developed by <a href="https://github.com/debrajhyper">Debraj Karmakar</a>
+<span style="display:inline-flex; justify-content:space-evenly; width:20%;">
+<a href="https://twitter.com/debraj_010">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" width="20px"/>
+</a>
+<a href="https://www.linkedin.com/in/debrajkarmakar010/">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20px"/>
+</a>
+</span>
+
+>Just wrapped up <a href="https://wbuilder.vercel.app/">Workflow Builder</a>, a React& Redux advance project. A compact journey with big learnings. From UI design to workflow canvas state management, faced challenges that shaped my skills as a front-end dev.
+
+<br/>
+
+## 🚀 Tech Stack
+
+- HTML5
+- CSS3
+- Vite
+- React
+- Typescript
+- React Flow
+- React Hooks
+- React Redux
+- React Router
+- Tailwind CSS
+- Redux Toolkit
+- Tabler Icons
+- React Resizable Panels
+
+<br/>
+
+## Key Features
+
+- [✅] The dashboard will display all the workflows user has created. Users can either create a new workflow or edit the existing one.
+- [✅] The user will be represented with a blank canvas.
+- [✅] In the left panel,
+    - there will be options to choose CSV data to perform operations on. (These CSVs will reside in the local project folder).
+    - These CSV data will be input of the next node.
+    - there will be nodes which represents Array methods such as filter, map, find etc.
+- [✅] User will select any node and will drop in canvas and will take few required inputs such as,
+    - in sort method, column name & order
+    - in filter method,
+        - column name,
+        - condition (is equal, is not equal to, includes, does not include)
+        - value (this will be dynamically shown based on condition type selection)
+    - And in such way many other methods…..
+- [✅] All these blocks should be connected via each other and output of this block should be passed to the next connected block and should perform operation only on the previous node’s output data.
+- [✅] There should be “Run” button inside every block and upon clicking it, final output should be shown in table format in bottom panel (which should be collapsible)
+- [✅] These data should be option to “Export data” in json or in CSV format again.
+- [✅] There will be “Save workflow” button on header. By clicking it that workflow along with its unique name should be stored in web storage (localStorage or indexedDB whichever you prefer)
+- [✅] The application should handle large data efficiently and demonstrate good performance.
+
+<br/>
+
+## Acceptance Criteria
+
+1. [✅] The application is built using React and related technology stack (Redux, React-Router, etc).
+2. [✅] The workflow builder uses [React Flow](https://reactflow.dev/) and provides a seamless user experience.
+3. [✅] Components are well-structured and properly organized.
+4. [✅] State management is handled efficiently using Redux and context API.
+5. [✅] You need to use Redux-toolkit for state management if you plan to use it.
+6. [✅] React hooks are used where necessary.
+7. [✅] React best practices are followed.
+8. [✅] Proper error handling is implemented.
+9. [✅] Proper use of async operations and Promises.
+10. [✅] The code is clean, well-structured, and follows a recognized style guide ``(Airbnb's style guide)``.
+11. [✅] Code should run with eslint enabled.
+12. [✅] Error messages should be proper along with fallback UI where there are no data.
+13. [✅] Runtime UI crashes are not allowed, even if it happens anyhow, It should have a fallback UI  with a gradient background and error message texts upon it which should be clearly readable.
+
+<br/>
+
+## 🏃🏻‍♂️ Run Locally
+
+Clone the project
+```
+  $git clone https://github.com/debrajhyper/workflow-builder.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Go to the project directory
+```
+  cd workflow-builder
+```
+
+Install dependencies
+```
+  $npm install
+```
+
+Start the dev server
+```
+  $npm run dev
+```
+
+<br/>

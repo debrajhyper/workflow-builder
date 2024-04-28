@@ -1,11 +1,14 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NO_PREVIEW, NODE_TYPE_FILE_UPLOAD, STORE_NAME } from "@Constants";
+import { LOCAL_STORAGE_KEY, NO_PREVIEW, NODE_TYPE_FILE_UPLOAD, STORE_NAME } from "@Constants";
 import { RootState } from "./workflowStore";
 import { Connection, Edge, EdgeChange, Node, NodeRemoveChange } from "reactflow";
 import { WorkflowBuilderState, WorkflowType } from "types";
 
+const storedItems: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
+const parsedItems = storedItems ? JSON.parse(storedItems) : null;
+const localItems = parsedItems !== null ? parsedItems : [];
 const initialState: WorkflowBuilderState = {
-    items: [],
+    items: localItems || [],
     currentItem: null,
 };
 
@@ -16,15 +19,23 @@ export const workflowBuilderSlice = createSlice({
         setCurrentWorkflow: (state, action: PayloadAction<WorkflowType>) => {
             state.currentItem = action.payload;
         },
-        createWorkflow: (state, action: PayloadAction<WorkflowType>) => {
-            state.items.push({ ...action.payload, id: state.items.length + 1 });
+        resetCurrentWorkflow: (state) => {
             state.currentItem = initialState.currentItem;
         },
+        createWorkflow: (state, action: PayloadAction<WorkflowType>) => {
+            // state.currentItem = initialState.currentItem;
+            const newWorkflow = { ...action.payload, id: state.items.length + 1 };
+            state.items.push(newWorkflow);
+            state.currentItem = newWorkflow;
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.items));
+        },
         updateWorkflow: (state, action: PayloadAction<{ id: number; data: WorkflowType }>) => {
+            // state.currentItem = initialState.currentItem;
             const { id, data } = action.payload;
             const index = state.items.findIndex((item) => item.id === id);
             state.items[index] = data;
-            state.currentItem = initialState.currentItem;
+            state.currentItem = data;
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.items));
         },
         addNewNode: (state, action: PayloadAction<Node>) => {
             state.currentItem?.nodes.push({
@@ -118,6 +129,7 @@ export const workflowBuilderSlice = createSlice({
 
 export const {
     createWorkflow,
+    resetCurrentWorkflow,
     updateWorkflow,
     addNewNode,
     setPreview,

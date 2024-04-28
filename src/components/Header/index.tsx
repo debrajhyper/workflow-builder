@@ -1,11 +1,12 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import logo from '@Assets/logo_48.png';
 import { OnCloseType } from "./types";
 import { HOME_PATH } from "@Routes";
 import { SaveModal } from "./SaveModal";
 import { MODAL_SAVE } from "@Constants";
 import { IconFolderPlus, IconDeviceFloppy, IconX } from '@tabler/icons-react';
-import { createWorkflow, getCurrentWorkflowSelectors, updateWorkflow, useAppDispatch, useAppSelector } from "@Services";
+import { createWorkflow, getCurrentWorkflowSelectors, updateWorkflow, useAppDispatch, useAppSelector, resetCurrentWorkflow } from "@Services";
 
 export function Header() {
     const dispatch = useAppDispatch();
@@ -13,10 +14,13 @@ export function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
-    
+
+    useEffect(() => {
+        document.title = `Workflow Builder ${currentWorkflow?.name ? `| ${currentWorkflow?.name}` : ''}`;
+    }, [currentWorkflow]);
+
     const onClose = useCallback(
-        (params: Parameters<OnCloseType>[0]) => {
-            const { type, data } = params;
+        ({ type, data }: Parameters<OnCloseType>[0]) => {
             setIsOpen(false);
             if (type === MODAL_SAVE && currentWorkflow) {
                 if (data?.id === 0) {
@@ -39,6 +43,7 @@ export function Header() {
         <>
             <header className="flex justify-between items-center bg-header border-b border-border px-4 h-12">
                 <div className="flex items-center h-full font-extrabold text-2xl tracking-tighter text-[#4f4e60]">
+                    <img src={logo} alt="logo" className="w-8 mr-2" />
                     <span>Workflow Builder</span>
                 </div>
                 {
@@ -59,7 +64,7 @@ export function Header() {
                                     <IconDeviceFloppy size={18} />
                                     <span className="ml-1">Save workflow</span>
                                 </button>
-                                <Link to={HOME_PATH} title="Click to close workflow" className="flex justify-center items-center rounded border border-border p-1.5 px-1.5 text-xs font-bold hover:bg-border">
+                                <Link onClick={() => dispatch(resetCurrentWorkflow())} to={HOME_PATH} title="Click to close workflow" className="flex justify-center items-center rounded border border-border p-1.5 px-1.5 text-xs font-bold hover:bg-border">
                                     <IconX size={18} />
                                 </Link>
                             </div>

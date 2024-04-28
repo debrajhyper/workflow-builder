@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from './hook';
 import { workflowStore } from './workflowStore';
 import {
     createWorkflow,
+    resetCurrentWorkflow,
     updateWorkflow,
     addNewNode,
     setPreview,
@@ -23,6 +24,7 @@ export {
     useAppDispatch, useAppSelector,
     workflowStore,
     createWorkflow,
+    resetCurrentWorkflow,
     updateWorkflow,
     addNewNode,
     setPreview,

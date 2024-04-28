@@ -20,3 +20,5 @@ export const DND_MOVE = "move";
 export const NODE_TYPE_FILE_UPLOAD = "fileUploadNode";
 export const NODE_TYPE_FILTER = "filterNode";
 export const NODE_TYPE_SORT = "sortNode";
+
+export const LOCAL_STORAGE_KEY = "workflowItems";

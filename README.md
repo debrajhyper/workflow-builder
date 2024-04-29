@@ -2,7 +2,7 @@
 
 🌐 Website : [wbuilder](https://wbuilder.vercel.app/)
 
-## Project Description
+## 📑Project Description
 
     Create a Workflow Builder application where users can create, edit, and visualize different workflows. Each workflow consists of multiple steps (nodes) and the relationships (edges) between them. Users should be able to drag and drop different types of nodes (e.g., filter, find, reduce, map, array methods) onto a canvas, and then draw lines between them to represent the workflow.
 
@@ -48,30 +48,58 @@ Developed by <a href="https://github.com/debrajhyper">Debraj Karmakar</a>
 
 <br/>
 
-## Key Features
+## 📁Folder Structure
+```typescript
+├───data
+├───public
+├───src
+│   ├───app
+│   ├───assets
+│   ├───components
+│   │   ├───BlockLibrary
+│   │   ├───Canvas
+│   │   │   └───customNodes      
+│   │   ├───Header
+│   │   ├───Table
+│   │   └───WorkflowCard
+│   ├───constants
+│   ├───hooks
+│   ├───layout
+│   ├───routes
+│   ├───services
+│   ├───utils
+│   └───view
+│       ├───Home
+│       ├───NoMatchFound
+│       └───WorkflowBuilder
+└───template
+```
+<br/>
 
-- [✅] The dashboard will display all the workflows user has created. Users can either create a new workflow or edit the existing one.
-- [✅] The user will be represented with a blank canvas.
-- [✅] In the left panel,
+## 🔐Key Features
+
+- [✔] The dashboard will display all the workflows user has created. Users can either create a new workflow or edit the existing one.
+- [✔] The user will be represented with a blank canvas.
+- [✔] In the left panel,
     - there will be options to choose CSV data to perform operations on. (These CSVs will reside in the local project folder).
     - These CSV data will be input of the next node.
     - there will be nodes which represents Array methods such as filter, map, find etc.
-- [✅] User will select any node and will drop in canvas and will take few required inputs such as,
+- [✔] User will select any node and will drop in canvas and will take few required inputs such as,
     - in sort method, column name & order
     - in filter method,
         - column name,
         - condition (is equal, is not equal to, includes, does not include)
         - value (this will be dynamically shown based on condition type selection)
     - And in such way many other methods…..
-- [✅] All these blocks should be connected via each other and output of this block should be passed to the next connected block and should perform operation only on the previous node’s output data.
-- [✅] There should be “Run” button inside every block and upon clicking it, final output should be shown in table format in bottom panel (which should be collapsible)
-- [✅] These data should be option to “Export data” in json or in CSV format again.
-- [✅] There will be “Save workflow” button on header. By clicking it that workflow along with its unique name should be stored in web storage (localStorage or indexedDB whichever you prefer)
-- [✅] The application should handle large data efficiently and demonstrate good performance.
+- [✔] All these blocks should be connected via each other and output of this block should be passed to the next connected block and should perform operation only on the previous node’s output data.
+- [✔] There should be “Run” button inside every block and upon clicking it, final output should be shown in table format in bottom panel (which should be collapsible)
+- [✔] These data should be option to “Export data” in json or in CSV format again.
+- [✔] There will be “Save workflow” button on header. By clicking it that workflow along with its unique name should be stored in web storage (localStorage or indexedDB whichever you prefer)
+- [✔] The application should handle large data efficiently and demonstrate good performance.
 
 <br/>
 
-## Acceptance Criteria
+## ✅Acceptance Criteria
 
 1. [✅] The application is built using React and related technology stack (Redux, React-Router, etc).
 2. [✅] The workflow builder uses [React Flow](https://reactflow.dev/) and provides a seamless user experience.

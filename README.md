@@ -90,29 +90,28 @@ Developed by <a href="https://github.com/debrajhyper">Debraj Karmakar</a>
         - column name,
         - condition (is equal, is not equal to, includes, does not include)
         - value (this will be dynamically shown based on condition type selection)
-    - And in such way many other methods…..
-- [✔] All these blocks should be connected via each other and output of this block should be passed to the next connected block and should perform operation only on the previous node’s output data.
-- [✔] There should be “Run” button inside every block and upon clicking it, final output should be shown in table format in bottom panel (which should be collapsible)
-- [✔] These data should be option to “Export data” in json or in CSV format again.
-- [✔] There will be “Save workflow” button on header. By clicking it that workflow along with its unique name should be stored in web storage (localStorage or indexedDB whichever you prefer)
+- [✔] All these blocks connected via each other and output of this block passed to the next connected block and perform operation only on the previous node’s output data.
+- [✔] There is a ``Run`` button inside every block and upon clicking it, final output will be shown in table format in bottom panel (which is collapsible)
+- [✔] These data has option to “Export data” in json or in CSV format again.
+- [✔] There is a ``Save workflow`` button on header. By clicking it that workflow along with its unique name should be stored in web storage (localStorage)
 - [✔] The application should handle large data efficiently and demonstrate good performance.
 
 <br/>
 
-## ✅Acceptance Criteria
+## ✅Development Technology
 
 1. [✅] The application is built using React and related technology stack (Redux, React-Router, etc).
 2. [✅] The workflow builder uses [React Flow](https://reactflow.dev/) and provides a seamless user experience.
 3. [✅] Components are well-structured and properly organized.
 4. [✅] State management is handled efficiently using Redux and context API.
-5. [✅] You need to use Redux-toolkit for state management if you plan to use it.
+5. [✅] Use of Redux-toolkit for state management.
 6. [✅] React hooks are used where necessary.
 7. [✅] React best practices are followed.
 8. [✅] Proper error handling is implemented.
 9. [✅] Proper use of async operations and Promises.
 10. [✅] The code is clean, well-structured, and follows a recognized style guide ``(Airbnb's style guide)``.
-11. [✅] Code should run with eslint enabled.
-12. [✅] Error messages should be proper along with fallback UI where there are no data.
+11. [✅] Code runs with eslint enabled.
+12. [✅] Error messages is proper along with fallback UI where there are no data.
 13. [✅] Runtime UI crashes are not allowed, even if it happens anyhow, It should have a fallback UI  with a gradient background and error message texts upon it which should be clearly readable.
 
 <br/>
